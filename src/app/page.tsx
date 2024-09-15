@@ -1,15 +1,16 @@
+"use client"
 import useFetch from '@/hooks/useFetch'
 
 type JokeType = {
-  type: 'general'
+  type: 'general' | 'programming'
   setup: string
   punchline: string
   id: number
 }
 
-const Home = async () => {
+const Home = () => {
 
-  const { data: joke, error, fetchData, loading } = useFetch<JokeType>('https://official-joke-api.appspot.com/random_joke', { cache: 'no-cache' })
+  const { data: joke, fetchData, loading } = useFetch<JokeType>('https://official-joke-api.appspot.com/random_joke', { cache: 'no-cache' })
 
   return (
     <main className="flex min-h-screen container mx-auto">
@@ -31,8 +32,9 @@ const Home = async () => {
             >
               LOL Again
             </button>
-
           </div>
+        ) : loading ? (
+          <h1 className='text-3xl'>Loading...</h1>
         ) : (
           <h1 className='text-3xl'>Sorry to say, I just ran out of Jokes, come back later</h1>
         )}

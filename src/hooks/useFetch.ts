@@ -5,7 +5,7 @@ const useFetch = <T> (input: string | URL | globalThis.Request, options?: Reques
 
   const [data, setData] = useState<T | null>(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
   const fetchData = async () => {
     setLoading(true)
@@ -15,8 +15,9 @@ const useFetch = <T> (input: string | URL | globalThis.Request, options?: Reques
         setData(fetchedData)
       })
       .catch((err) => {
-        console.log('error', err)
-        setError(error)
+        if (err instanceof Error) {
+          setError(err.message)
+        }
       })
       .finally(() => {
         setLoading(false)
@@ -25,7 +26,7 @@ const useFetch = <T> (input: string | URL | globalThis.Request, options?: Reques
 
   useEffect(() => {
     fetchData()
-  }, [url])
+  }, [input])
 
   return { loading, data, error, fetchData }
 }
