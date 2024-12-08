@@ -16,10 +16,10 @@ const Home = () => {
 
   return (
     <main className="flex min-h-screen container mx-auto">
-      <div className='flex items-center justify-center mx-auto text-center max-sm:mx-3'>
+      <div className='flex items-center justify-center mx-auto text-center max-sm:mx-3 select-none'>
 
         {joke ? (
-          <div className='max-sm:text-left select-none'>
+          <div className='max-sm:text-left'>
             <h1 className='text-3xl'>{joke.setup}</h1>
             <div className='relative group cursor-pointer py-4 mb-4'>
               <div className='absolute group-hover:opacity-0 underline decoration-wavy transition-opacity duration-300 decoration-teal-500'>Tap or Hover</div>
@@ -38,7 +38,7 @@ const Home = () => {
         ) : loading ? (
           <h1 className='text-3xl'>Loading...</h1>
         ) : (
-          <h1 className='text-3xl'>Sorry to say, I just ran out of Jokes, come back later</h1>
+          <h1 className='text-3xl'>“Oops! Our joke machine is on a coffee break. Come back later for a fresh batch of laughs!” ☕😂</h1>
         )}
 
       </div>
