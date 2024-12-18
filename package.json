@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "deploy": "gh-pages -d out -t true",
-    "predeploy": "touch out/.nojekyll"
+    "predeploy": "touch out/.nojekyll && echo lol.superkenil.com > out/CNAME"
   },
   "dependencies": {
     "react": "^19.0.0",
