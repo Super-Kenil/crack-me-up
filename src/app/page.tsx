@@ -29,7 +29,7 @@ const Home = () => {
             <button
               disabled={loading}
               onClick={fetchData}
-              className='px-4 py-1.5 rounded bg-teal-600 text-white dark:bg-teal-500 dark:hover:bg-teal-600 hover:bg-teal-700 transition-colors'
+              className='px-4 py-1.5 rounded bg-teal-600 text-white dark:text-teal-50 dark:bg-teal-700 dark:hover:bg-teal-800 hover:bg-teal-700 transition-colors'
               type='button'
             >
               LOL Again

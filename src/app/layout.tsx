@@ -8,7 +8,11 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata  = {
   title: 'Crack Me Up',
-  description: 'Laugh out loud, read jokes'
+  description: 'Laugh out loud, read jokes online',
+  authors: {
+    url: 'https://superkenil.com/',
+    name: 'Super-Kenil'
+  }
 }
 
 export default function RootLayout ({ children }: Readonly<{ children: ReactNode }>) {
