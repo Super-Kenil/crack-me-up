@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const useFetch = <T> (input: string | URL | globalThis.Request, options?: RequestInit) => {
 
@@ -24,9 +24,9 @@ const useFetch = <T> (input: string | URL | globalThis.Request, options?: Reques
       })
   }
 
-  useEffect(() => {
-    fetchData()
-  }, [input])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [input])
 
   return { loading, data, error, fetchData }
 }

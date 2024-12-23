@@ -10,7 +10,7 @@ type JokeType = {
 
 const Home = () => {
 
-  const { data: joke, fetchData, loading } = useFetch<JokeType>('https://official-joke-api.appspot.com/random_joke', { cache: 'no-cache' })
+  const { data: joke, fetchData, loading, error } = useFetch<JokeType>('https://official-joke-api.appspot.com/random_joke')
 
   console.info('%c Super Kenil', 'font-weight: bold; font-size: 50px;color: red; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)')
 
@@ -18,12 +18,12 @@ const Home = () => {
     <main className="flex min-h-screen container mx-auto">
       <div className='flex items-center justify-center mx-auto text-center max-sm:mx-3 select-none'>
 
-        {joke ? (
+        {!loading && !error && (
           <div className='max-sm:text-left'>
-            <h1 className='text-3xl'>{joke.setup}</h1>
+            <h1 className='text-3xl'>{joke?.setup ?? 'Why did the coffee file a police report?'}</h1>
             <div className='relative group cursor-pointer py-4 mb-4'>
               <div className='absolute group-hover:opacity-0 underline decoration-wavy transition-opacity duration-300 decoration-teal-500'>Tap or Hover</div>
-              <div className='opacity-0 group-hover:opacity-100 text-teal-800 dark:text-teal-500 text-left transition-opacity duration-300'>{joke.punchline}</div>
+              <div className='opacity-0 group-hover:opacity-100 text-teal-800 dark:text-teal-500 text-left transition-opacity duration-300'>{joke?.punchline ?? 'It got mugged.'}</div>
             </div>
 
             <button
@@ -35,12 +35,9 @@ const Home = () => {
               LOL Again
             </button>
           </div>
-        ) : loading ? (
-          <h1 className='text-3xl'>Loading...</h1>
-        ) : (
-          <h1 className='text-3xl'>“Oops! Our joke machine is on a coffee break. Come back later for a fresh batch of laughs!” ☕😂</h1>
         )}
-
+        {loading && <h1 className='text-3xl'>Loading...</h1>}
+        {error && <h1 className='text-3xl'>“Oops! Our joke machine is on a coffee break. Come back later for a fresh batch of laughs!” ☕😂</h1>}
       </div>
     </main>
   )
